@@ -14,8 +14,14 @@ namespace yiiDateTimePicker;
  */
 class CJuiDateTimePicker extends \CJuiDatePicker
 {
+	/**
+	 * Widget mode: date, time, datetime
+	 *
+	 * @var string
+	 */
 	public $mode = 'datetime';
 
+	public $useDefaultLocalization = false;
 
 	public function init()
 	{
@@ -27,7 +33,7 @@ class CJuiDateTimePicker extends \CJuiDatePicker
 		}
 		parent::init();
 	}
-	
+
 	public function run()
 	{
 		list($name, $id) = $this->resolveNameID();
@@ -53,23 +59,34 @@ class CJuiDateTimePicker extends \CJuiDatePicker
 		$js = "jQuery('#{$id}').{$this->mode}picker($options);";
 		$cs = \Yii::app()->getClientScript();
 		$assets = \Yii::app()->getAssetManager()->publish(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'assets');
-		$cs->registerCssFile($assets . '/jquery-ui-timepicker-addon.css');
-		$cs->registerScriptFile($assets . '/jquery-ui-timepicker-addon.js', \CClientScript::POS_END);
-		$cs->registerScriptFile($assets . '/jquery-ui-sliderAccess.js', \CClientScript::POS_END);
+		if (YII_DEBUG) {
+			$cs->registerCssFile($assets . '/jquery-ui-timepicker-addon.css');
+			$cs->registerScriptFile($assets . '/jquery-ui-timepicker-addon.js', \CClientScript::POS_END);
+			$cs->registerScriptFile($assets . '/jquery-ui-sliderAccess.js', \CClientScript::POS_END);
+			$cs->registerScriptFile($assets . '/i18n/jquery-ui-timepicker-addon-i18n.js', \CClientScript::POS_END);
+		} else {
+			$cs->registerCssFile($assets . '/jquery-ui-timepicker-addon.min.css');
+			$cs->registerScriptFile($assets . '/jquery-ui-timepicker-addon.min.js', \CClientScript::POS_END);
+			$cs->registerScriptFile($assets . '/jquery-ui-sliderAccess.min.js', \CClientScript::POS_END);
+			$cs->registerScriptFile($assets . '/i18n/jquery-ui-timepicker-addon-i18n.min.js', \CClientScript::POS_END);
+		}
 
 		if (isset($this->language)) {
-			$this->registerScriptFile($this->i18nScriptFile);
+			if ($this->useDefaultLocalization) {
+				$this->registerScriptFile($this->i18nScriptFile);
+			}
 			$js =
 <<<EOD
 jQuery('#{$id}').{$this->mode}picker(jQuery.extend({showMonthAfterYear:false}, jQuery.datepicker.regional['{$this->language}'], {$options}));
 EOD;
-			$cs->registerScriptFile(
-				$assets . '/i18n/jquery-ui-timepicker-' . $this->language . '.js', \CClientScript::POS_END
-			);
 		}
 		$cs->registerScript(
-			__CLASS__, $this->defaultOptions ?
-				'jQuery.{$this->mode}picker.setDefaults(' . \CJavaScript::encode($this->defaultOptions) . ');' : ''
+			__CLASS__,
+			$this->defaultOptions
+				?
+				'jQuery.{$this->mode}picker.setDefaults(' . \CJavaScript::encode($this->defaultOptions) . ');'
+				:
+				''
 		);
 		$cs->registerScript(__CLASS__ . '#' . $id, $js);
 	}
