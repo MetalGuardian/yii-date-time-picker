@@ -21,6 +21,11 @@ class CJuiDateTimePicker extends \CJuiDatePicker
 	 */
 	public $mode = 'datetime';
 
+	/**
+	 * Use original yii jquery-ui-i18n.min.js
+	 *
+	 * @var bool
+	 */
 	public $useDefaultLocalization = false;
 
 	public function init()

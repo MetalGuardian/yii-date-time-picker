@@ -1,12 +1,9 @@
 Yii CJuiDateTimePicker
 =======================
 
-Based on [Anatoly Ivanchin](http://anatoliyivanchin.moikrug.ru/) [extension](http://www.yiiframework.com/extension/datetimepicker/),
-which used [jQuery Timepicker Addon](https://github.com/trentrichardson/jQuery-Timepicker-Addon).
+Yii datetime picker. Used [jQuery Timepicker Addon](https://github.com/trentrichardson/jQuery-Timepicker-Addon).
 
-Full addon documentation: [http://trentrichardson.com/examples/timepicker/](http://trentrichardson.com/examples/timepicker/)
-
-Updated by [me](https://github.com/MetalGuardian)
+Full datetime picker documentation: [http://trentrichardson.com/examples/timepicker/](http://trentrichardson.com/examples/timepicker/)
 
 	$this->widget(
 		\yiiDateTimePicker\CJuiDateTimePicker::className(),
