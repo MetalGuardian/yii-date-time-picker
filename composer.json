@@ -1,5 +1,6 @@
 {
 	"name":"metalguardian/yii-date-time-picker",
+	"description": "select date and time yii widget",
 	"authors":[
 		{
 			"name":"Ivan Pushkin"
@@ -7,6 +8,8 @@
 	],
 	"license": "MIT",
 	"autoload": {
-		"psr-0": {"yiiDateTimePicker": "/"}
+		"psr-4": {
+			"yiiDateTimePicker\\": ""
+		}
 	}
 }
