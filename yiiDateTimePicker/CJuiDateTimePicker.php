@@ -15,7 +15,7 @@ namespace yiiDateTimePicker;
 class CJuiDateTimePicker extends \CJuiDatePicker
 {
 	/**
-	 * Widget mode: date, time, datetime
+	 * Widget mode: date, time, datetime (default)
 	 *
 	 * @var string
 	 */
@@ -89,5 +89,15 @@ EOD;
 				''
 		);
 		$cs->registerScript(__CLASS__ . '#' . $id, $js);
+	}
+
+	/**
+	 * Return extension full class name
+	 *
+	 * @return string
+	 */
+	public static function className()
+	{
+		return get_called_class();
 	}
 }
