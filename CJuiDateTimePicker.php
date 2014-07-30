@@ -26,7 +26,7 @@ class CJuiDateTimePicker extends \CJuiDatePicker
 	 *
 	 * @var bool
 	 */
-	public $useDefaultLocalization = false;
+	public $useDefaultLocalization = true;
 
 	public function init()
 	{
@@ -82,7 +82,7 @@ class CJuiDateTimePicker extends \CJuiDatePicker
 			}
 			$js =
 <<<EOD
-jQuery('#{$id}').{$this->mode}picker(jQuery.extend({showMonthAfterYear:false}, jQuery.datepicker.regional['{$this->language}'], {$options}));
+jQuery('#{$id}').{$this->mode}picker(jQuery.extend({showMonthAfterYear:false}, jQuery.datepicker.regional['{$this->language}'], jQuery.timepicker.regional['{$this->language}'], {$options}));
 EOD;
 		}
 		$cs->registerScript(
