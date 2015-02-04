@@ -1,6 +1,9 @@
 {
 	"name":"metalguardian/yii-date-time-picker",
 	"description": "select date and time yii widget",
+	"keywords": ["yii", "extension", "date", "time", "datetime", "picker"],
+	"homepage": "https://github.com/MetalGuardian/yii-date-time-picker",
+	"type": "yii-widget",
 	"authors":[
 		{
 			"name":"Ivan Pushkin"
